@@ -10,13 +10,15 @@
     <%= submit_tag 'Search', name: nil %>
 <% end %>
 
-<% if params[:search] %>
+<br>
+
+<% if params[:search] && @flights.any? %>
+    <%= @flights.count %>
     <%= form_tag new_booking_path, method: 'get' do %>
-        <% render @flights %>
+
+        <%= render @flights %>
         <%= hidden_field_tag :num_passengers, params[:num_passengers] %>
         <%= submit_tag 'Select this flight', name: nil %>
     <% end %>
-
-    <h1>Yes I searched for sth!</h1>
 <% end %>
 

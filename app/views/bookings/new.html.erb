@@ -1,2 +1,16 @@
-<h1>Booking#new</h1>
-<p>Find me in app/views/booking/new.html.erb</p>
+<h1>Create a new Booking</h1>
+
+<%= "You are booking a flight from #{@flight.from_airport.code} to #{@flight.to_airport.code}"%>
+
+<%= form_for @booking do |f| %>
+
+    <%= f.hidden_field :flight_id, value: @flight.id %>
+
+    Please enter the following booking information: <br>
+    <%= f.fields_for :passengers do |passenger_form| %>
+        Name: <%= passenger_form.text_field :name %> <br>
+        Email: <%= passenger_form.text_field :email %> <br> <br>
+    <% end %>
+
+    <%= f.submit 'Book flight' %>
+<% end %>

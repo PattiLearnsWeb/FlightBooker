@@ -1,0 +1,6 @@
+<%= @booking.flight.from_airport.code %> <br>
+
+<% @booking.passengers.each do |passenger| %>
+    Name: <%= passenger.name %> <br>
+    Email: <%= passenger.email %> <br>
+<% end %>

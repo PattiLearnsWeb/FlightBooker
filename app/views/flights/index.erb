@@ -1,0 +1,22 @@
+<h1>Search for a flight!</h1>
+
+<%= form_tag root_path, method: 'get' do %>
+    <%= hidden_field_tag :search %> <br>
+    From <%= select_tag :from, options_for_select(@airport_codes, params[:from]) %> <br>
+    To <%= select_tag :to, options_for_select(@airport_codes, params[:to]) %> <br>
+    Number of passengers <%= select_tag :num_passengers, options_for_select(@num_passengers, params[:num_passengers]) %>
+    <br>
+
+    <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+<% if params[:search] %>
+    <%= form_tag new_booking_path, method: 'get' do %>
+        <% render @flights %>
+        <%= hidden_field_tag :num_passengers, params[:num_passengers] %>
+        <%= submit_tag 'Select this flight', name: nil %>
+    <% end %>
+
+    <h1>Yes I searched for sth!</h1>
+<% end %>
+
